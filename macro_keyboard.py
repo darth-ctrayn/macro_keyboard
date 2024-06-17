@@ -1,12 +1,20 @@
 import sys
 import yaml
 import keyboard
+import time
 
 MACRO_FILE = "macros.yaml"
 
-key_shifts = {
-    "' '": 'SPACE'
-}
+def handle_macro( steps ):
+    for step in steps:
+        if step['type'] == 'Key':
+            for key in step['keys']:
+                keyboard.send(key)
+        elif step['type'] == 'String':
+            for key in step['keys']:
+                keyboard.write(key)
+        elif step['type'] == 'Wait':
+            time.sleep(step['keys'])
 
 if __name__ == '__main__':
     # Parse the yaml and create a dictionary
@@ -17,9 +25,8 @@ if __name__ == '__main__':
     macros = yaml.safe_load(document)['macros']
 
     print(macros)
-    for key, values in macros.items():
-        values = values.lstrip()
-        keyboard.add_hotkey(key, keyboard.send, args=[values])
+    for key, steps in macros.items():
+        keyboard.add_hotkey(key, handle_macro, args=[steps])
 
     # TODO: Probably don't want this in the final port
     # Exit

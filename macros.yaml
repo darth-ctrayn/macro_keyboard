@@ -1,3 +1,27 @@
 macros:
-  Space: '3+4'
-  1+2: 'ctl+f9'
+  Space:
+  - type: 'String'
+    keys:
+    - '3'
+    - '4'
+  1+2:
+  - type: 'Wait'
+    keys: 1
+  - type: 'Key'
+    keys:
+    - 'win'
+  - type: 'Wait'
+    keys: 1
+  - type: 'String'
+    keys:
+    - 'notepad'
+  - type: 'Wait'
+    keys: 0.5
+  - type: 'Key'
+    keys:
+    - 'enter'
+  - type: 'Wait'
+    keys: 0.5
+  - type: 'String'
+    keys:
+    - 'Im in'
