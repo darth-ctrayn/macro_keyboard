@@ -1,9 +1,27 @@
 macros:
-  Space:
+  '1':
   - type: string
     keys:
     - '3'
     - '4'
+  '*':
+  - type: string
+    keys:
+    - '0123456789 '
+  - type: key
+    keys:
+    - 'ret'
+  - type: string
+    keys:
+    - 'abcdefghijklmnopqrstuvwxyz'
+  '4':
+  - type: string
+    keys:
+    - test
+  '7':
+  - type: key
+    keys:
+    - 'up_arrow'
   # 1+2:
   # - type: wait
   #   seconds: 1
