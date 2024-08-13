@@ -1,7 +1,7 @@
 import keyboard, keyboard.mouse
 import yaml
 import time
-from macro_verify import *
+# from macros_verify import *
 
 MACRO_FILE = "macros.yaml"
 
@@ -43,6 +43,7 @@ if __name__ == '__main__':
     # Verify the macros
 
 
+    # Register the macros
     print(macros)
     for key, steps in macros.items():
         keyboard.add_hotkey(key, handle_macro, args=[steps])

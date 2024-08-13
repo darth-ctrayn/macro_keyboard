@@ -4,35 +4,35 @@ macros:
     keys:
     - '3'
     - '4'
-  1+2:
-  - type: wait
-    seconds: 1
-  - type: key
-    keys:
-    - win
-  - type: wait
-    seconds: 1
-  - type: string
-    keys:
-    - notepad
-  - type: wait
-    seconds: 0.5
-  - type: key
-    keys:
-    - enter
-  - type: wait
-    seconds: 0.5
-  - type: string
-    keys:
-    - Im in
-  3+4:
-  - type: mouse
-    absolute:
-      x: 100
-      y: 100
-    duration: 1
-  - type: mouse
-    relative:
-      x: 100
-      y: 100
-      duration: 0.5
+  # 1+2:
+  # - type: wait
+  #   seconds: 1
+  # - type: key
+  #   keys:
+  #   - win
+  # - type: wait
+  #   seconds: 1
+  # - type: string
+  #   keys:
+  #   - notepad
+  # - type: wait
+  #   seconds: 0.5
+  # - type: key
+  #   keys:
+  #   - enter
+  # - type: wait
+  #   seconds: 0.5
+  # - type: string
+  #   keys:
+  #   - Im in
+  # 3+4:
+  # - type: mouse
+  #   absolute:
+  #     x: 100
+  #     y: 100
+  #   duration: 1
+  # - type: mouse
+  #   relative:
+  #     x: 100
+  #     y: 100
+  #     duration: 0.5
