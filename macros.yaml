@@ -1,27 +1,25 @@
 macros:
   '1':
-  - type: string
+  - type: keys
     keys:
-    - '3'
-    - '4'
+    - '{shift}o{/shift}liver and {shift}p{/shift}arker'
   '*':
-  - type: string
+  - type: keys
     keys:
-    - '0123456789 '
-  - type: key
-    keys:
-    - 'ret'
-  - type: string
-    keys:
-    - 'abcdefghijklmnopqrstuvwxyz'
+    - '0123456789 {ret}'
+    - 'abc defghijk{shift}lmn{/shift}opqrstuvwxyz'
   '4':
-  - type: string
+  - type: keys
     keys:
-    - test
+    - '{shift}{ctl}{ralt}{/shift}{/ctl}{/ralt}'
+  - type: wait
+    seconds: 1
   '7':
-  - type: key
+  - type: keys
     keys:
-    - 'up_arrow'
+    - '{shift}ctl{/shift}'
+  - type: wait
+    seconds: 1
   # 1+2:
   # - type: wait
   #   seconds: 1

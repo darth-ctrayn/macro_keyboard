@@ -78,7 +78,6 @@ def receive_thread( queue ):
                 last_key = ret_char
                 last_key_time = datetime.now()
 
-                print(f'Putting {ret_char}')
                 queue.put( ret_char )
     except KeyboardInterrupt:
         print("\nApplication stopped!")
