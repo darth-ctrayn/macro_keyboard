@@ -2,7 +2,8 @@ import yaml
 import time
 import multiprocessing as mp
 from read_keypad import *
-import os
+import os, subprocess
+import re
 # from macros_verify import *
 
 MACRO_FILE = "macros.yaml"
@@ -56,7 +57,6 @@ transform_key = {
     '[': chr(0x2F),
     ']': chr(0x30),
     '\\': chr(0x31),
-    '#': chr(0x32),
     ';': chr(0x33),
     "'": chr(0x34),
     "`": chr(0x35),
@@ -94,12 +94,61 @@ transform_key = {
     NULL_CHAR: NULL_CHAR
 }
 
+shift_transform_keys = {
+    'A': 'a',
+    'B': 'b',
+    'C': 'c',
+    'D': 'd',
+    'E': 'e',
+    'F': 'f',
+    'G': 'g',
+    'H': 'h',
+    'I': 'i',
+    'J': 'j',
+    'K': 'k',
+    'L': 'l',
+    'M': 'm',
+    'N': 'n',
+    'O': 'o',
+    'P': 'p',
+    'Q': 'q',
+    'R': 'r',
+    'S': 's',
+    'T': 't',
+    'U': 'u',
+    'V': 'v',
+    'W': 'w',
+    'X': 'x',
+    'Y': 'y',
+    'Z': 'z',
+    '!': '1',
+    '@': '2',
+    '#': '3',
+    '$': '4',
+    '%': '5',
+    '^': '6',
+    '&': '7',
+    '*': '8',
+    '(': '9',
+    ')': '0',
+    '_': '-',
+    '+': '=',
+    '{': '[',
+    '}': ']',
+    '|': '\\',
+    ':': ';',
+    '"': "'",
+    '~': "`",
+    '<': ',',
+    '>': '.',
+    '?': '/',
+}
+
 def send_thread( queue, macros ):
     print(macros)
     while True:
         keys = queue.get()
         if keys in macros:
-            print(f"Handling macro {macros[keys]}")
             handle_macro( macros[keys] )
 
 def handle_macro( steps ):
@@ -113,19 +162,16 @@ def handle_macro( steps ):
             if 'seconds' in step:
                 seconds = step['seconds']
             time.sleep(seconds)
-        # elif step['type'] == 'mouse':
-        #     if 'absolute' in step:
-        #         absolute = True
-        #         x = step['absolute']['x']
-        #         y = step['absolute']['y']
-        #     else:
-        #         absolute = False
-        #         x = step['relative']['x']
-        #         y = step['relative']['y']
-        #     duration = 0
-        #     if 'duration' in step:
-        #         duration = step['duration']
-        #     keyboard.mouse.move( x, y, absolute, duration )
+        elif step['type'] == 'system':
+            for command in step['keys']:
+                print(f'Running {command}')
+                proc = subprocess.run(command.split(' '), capture_output=True)
+                if 'output' in step and step['output'] == 'True':
+                    output = proc.stdout.decode()
+                    output = output.replace('{', '<')
+                    output = output.replace('}', '>')
+                    output = output.replace('\n', '{ret}')
+                    parse_and_send( output )
     send_key(NULL_CHAR)
 
 def parse_and_send( keys:str ):
@@ -145,6 +191,11 @@ def parse( keys:str ):
         if key == '{':
             to_send.append( current_keys[:current_keys.find('}')])
             current_keys = current_keys[current_keys.find('}') + 1:]
+        # Non-control keys (non-regular keys)
+        elif key in shift_transform_keys:
+            to_send.append('shift')
+            to_send.append(shift_transform_keys[key])
+            to_send.append('/shift')
         # Non-control keys (regular keys)
         else:
             to_send.append(key)
@@ -183,10 +234,10 @@ def send_array( keys ):
 
         # Send the key
         send_key( key, modifier=int(''.join(modifier), 2) )
+        send_key( NULL_CHAR, modifier=int(''.join(modifier), 2) )
         time.sleep(0.000000001)
 
 def send_key( key, modifier=0x0 ):
-    print(f'sending {key}')
     if key in transform_key:
         # report = NULL_CHAR*2 + transform_key[key] + NULL_CHAR*5
         report = chr(modifier) + NULL_CHAR + transform_key[key] + NULL_CHAR*5

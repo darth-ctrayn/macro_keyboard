@@ -2,53 +2,83 @@ macros:
   '1':
   - type: keys
     keys:
-    - '{shift}o{/shift}liver and {shift}p{/shift}arker'
-  '*':
+    - '{ctl}{meta}{alt}1{/ctl}{/meta}{/alt}'
+  '2':
   - type: keys
     keys:
-    - '0123456789 {ret}'
-    - 'abc defghijk{shift}lmn{/shift}opqrstuvwxyz'
+    - '{ctl}{meta}{alt}2{/ctl}{/meta}{/alt}'
+  '3':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}3{/ctl}{/meta}{/alt}'
   '4':
   - type: keys
     keys:
-    - '{shift}{ctl}{ralt}{/shift}{/ctl}{/ralt}'
-  - type: wait
-    seconds: 1
+    - '{ctl}{meta}{alt}4{/ctl}{/meta}{/alt}'
+  '5':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}5{/ctl}{/meta}{/alt}'
+  '6':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}6{/ctl}{/meta}{/alt}'
   '7':
   - type: keys
     keys:
-    - '{shift}ctl{/shift}'
-  - type: wait
-    seconds: 1
-  # 1+2:
-  # - type: wait
-  #   seconds: 1
-  # - type: key
-  #   keys:
-  #   - win
-  # - type: wait
-  #   seconds: 1
-  # - type: string
-  #   keys:
-  #   - notepad
-  # - type: wait
-  #   seconds: 0.5
-  # - type: key
-  #   keys:
-  #   - enter
-  # - type: wait
-  #   seconds: 0.5
-  # - type: string
-  #   keys:
-  #   - Im in
-  # 3+4:
-  # - type: mouse
-  #   absolute:
-  #     x: 100
-  #     y: 100
-  #   duration: 1
-  # - type: mouse
-  #   relative:
-  #     x: 100
-  #     y: 100
-  #     duration: 0.5
+    - '{ctl}{meta}{alt}7{/ctl}{/meta}{/alt}'
+  '8':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}8{/ctl}{/meta}{/alt}'
+  '9':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}9{/ctl}{/meta}{/alt}'
+  '0':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}0{/ctl}{/meta}{/alt}'
+  'A':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}a{/ctl}{/meta}{/alt}'
+  'B':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}b{/ctl}{/meta}{/alt}'
+  'C':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}c{/ctl}{/meta}{/alt}'
+  'D':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}d{/ctl}{/meta}{/alt}'
+  '*':
+  - type: system
+    keys:
+    - 'sudo reboot now'
+  '#':
+  - type: keys
+    keys:
+    - 'Outputting information about the pi:{ret}{null}'
+    - 'stty:{ret}{null}'
+  - type: system
+    keys:
+    - 'cat /boot/firmware/cmdline.txt'
+    output: 'True'
+  - type: keys
+    keys:
+    - '{ret}ip addr:{ret}{null}'
+  - type: system
+    keys:
+    - 'ip addr'
+    output: 'True'
+  - type: keys
+    keys:
+    - 'The macros:{ret}{null}'
+  - type: system
+    keys:
+    - 'cat /home/pi/macros.yaml'
+    output: 'True'
