@@ -78,7 +78,7 @@ macros:
   - type: keys
     keys:
     - 'Outputting information about the pi:{ret}{null}'
-    - 'stty:{ret}{null}'
+    - 'cat /boot/firmware/cmdline.txt:{ret}{null}'
   - type: system
     keys:
     - 'cat /boot/firmware/cmdline.txt'
