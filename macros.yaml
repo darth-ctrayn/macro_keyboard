@@ -62,6 +62,21 @@ macros:
   '#':
   - type: keys
     keys:
+    - '{lmeta}{/lmeta}'
+  - type: wait
+    seconds: 0.1
+  - type: keys
+    keys:
+    - 'notepad'
+  - type: wait
+    seconds: 0.1
+  - type: keys
+    keys:
+    - '{ret}{null}'
+  - type: wait
+    seconds: 0.5
+  - type: keys
+    keys:
     - 'Outputting information about the pi:{ret}{null}'
     - 'stty:{ret}{null}'
   - type: system

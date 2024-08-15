@@ -164,7 +164,6 @@ def handle_macro( steps ):
             time.sleep(seconds)
         elif step['type'] == 'system':
             for command in step['keys']:
-                print(f'Running {command}')
                 proc = subprocess.run(command.split(' '), capture_output=True)
                 if 'output' in step and step['output'] == 'True':
                     output = proc.stdout.decode()
@@ -239,7 +238,6 @@ def send_array( keys ):
 
 def send_key( key, modifier=0x0 ):
     if key in transform_key:
-        # report = NULL_CHAR*2 + transform_key[key] + NULL_CHAR*5
         report = chr(modifier) + NULL_CHAR + transform_key[key] + NULL_CHAR*5
         with open('/dev/hidg0', 'rb+') as fd:
             fd.write(report.encode())
