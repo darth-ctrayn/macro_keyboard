@@ -97,3 +97,19 @@ macros:
     keys:
     - 'cat /home/pi/macros.yaml'
     output: 'True'
+################################################################################
+# Above: Macros available on the keypad
+# Below: Macros only for keyboard
+################################################################################
+  'G':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}g{/ctl}{/meta}{/alt}'
+  'Q':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}q{/ctl}{/meta}{/alt}'
+  'N':
+  - type: keys
+    keys:
+    - '{ctl}{meta}{alt}n{/ctl}{/meta}{/alt}'

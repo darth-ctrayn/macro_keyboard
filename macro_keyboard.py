@@ -2,6 +2,7 @@ import yaml
 import time
 import multiprocessing as mp
 from read_keypad import *
+from read_bluetooth_keyboard import *
 import os, subprocess
 import re
 # from macros_verify import *
@@ -263,6 +264,7 @@ if __name__ == '__main__':
         q = mp.Queue()
         p1 = mp.Process(target=send_thread, args=(q, macros,))
         p2 = mp.Process(target=receive_thread, args=(q,))
+        p3 = mp.Process(target=recieve_keyboard_thread, args=(q, macros, ))
 
         p1.start() 
         p2.start() 
