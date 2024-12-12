@@ -1,0 +1,7 @@
+macros:
+  "ctrl + win + alt + z":
+  - type: wait
+    seconds: 0.5
+  - type: keys
+    keys:
+    - 'what the ca{shift + r}'

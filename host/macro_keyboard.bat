@@ -1,0 +1,1 @@
+python C:\Dev\Repo\macro_keyboard\host\main.py
